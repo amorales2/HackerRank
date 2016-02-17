@@ -1,2 +1,4 @@
 ﻿  main.cpp
+c:\users\andrew morales\documents\c++\hackerrank\cutthesticks\cutthesticks\cutthesticks\main.cpp(81): warning C4018: '<': signed/unsigned mismatch
+c:\users\andrew morales\documents\c++\hackerrank\cutthesticks\cutthesticks\cutthesticks\main.cpp(105): warning C4101: 'NumberOfSticks': unreferenced local variable
   CutTheSticks.vcxproj -> C:\Users\Andrew Morales\Documents\C++\HackerRank\CutTheSticks\CutTheSticks\Debug\CutTheSticks.exe
