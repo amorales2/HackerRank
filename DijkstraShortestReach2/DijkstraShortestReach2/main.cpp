@@ -29,6 +29,49 @@ The last line has an integer SS, denoting the starting position.
 */
 
 #include <iostream>
+#include <vector>
+#include <memory>
+#include <algorithm>
+
+//an edge contains its length and its endpoint. The starting point is 
+//the object that owns the edge.
+struct edge
+{
+	int m_edgeLength;
+	std::shared_ptr<node> m_endpoint;
+
+	const edge(int edgeLength, const node& const endpoint)
+	{
+		m_edgeLength = edgeLength;
+		m_endpoint = std::make_shared<node>(endpoint);
+	};
+
+};
+
+//A node is a collection of edges.
+struct node
+{
+	std::vector<edge> m_edgeList;
+	
+	void addEdge(int edgelength,const node& const endpoint)
+	{
+		m_edgeList.push_back(edge(edgelength, endpoint));
+	}
+
+	void addTwoWayEdge(int edgelength, node& const endpoint)
+	{
+		m_edgeList.push_back(edge(edgelength, endpoint));
+		endpoint.addEdge(edgelength, *this);
+	}
+};
+
+//the graph is a collection of nodes. The nodes themselves contain the edges.
+struct graph
+{
+	std::vector<node> m_nodeList;
+
+};
+
 
 int main()
 {
