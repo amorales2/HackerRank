@@ -69,6 +69,10 @@ struct node
 struct graph
 {
 	std::vector<node> m_nodeList;
+	void addNode(const node& node)
+	{
+		m_nodeList.push_back(node);
+	}
 
 };
 
