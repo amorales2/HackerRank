@@ -33,35 +33,34 @@ The last line has an integer SS, denoting the starting position.
 #include <memory>
 #include <algorithm>
 
-//an edge contains its length and its endpoint. The starting point is 
-//the object that owns the edge.
+
+struct node;
+
+//an edge contains its length, startpoint, and endpoint.
+//edges are directional
 struct edge
 {
 	int m_edgeLength;
-	std::shared_ptr<node> m_endpoint;
+	std::shared_ptr<node> m_startPoint;
+	std::shared_ptr<node> m_endPoint;
 
-	const edge(int edgeLength, const node& const endpoint)
+	edge(int edgeLength,const node& startPoint, const node& endPoint)
 	{
 		m_edgeLength = edgeLength;
-		m_endpoint = std::make_shared<node>(endpoint);
+		m_endPoint = std::make_shared<node>(endPoint);
+		m_startPoint = std::make_shared<node>(startPoint);
 	};
 
 };
 
-//A node is a collection of edges.
+//A node is a point on the graph
 struct node
 {
-	std::vector<edge> m_edgeList;
-	
-	void addEdge(int edgelength,const node& const endpoint)
-	{
-		m_edgeList.push_back(edge(edgelength, endpoint));
-	}
+	std::string m_name;
 
-	void addTwoWayEdge(int edgelength, node& const endpoint)
+	node(std::string name)
 	{
-		m_edgeList.push_back(edge(edgelength, endpoint));
-		endpoint.addEdge(edgelength, *this);
+		m_name = name;
 	}
 };
 
@@ -69,9 +68,14 @@ struct node
 struct graph
 {
 	std::vector<node> m_nodeList;
+	std::vector<edge> m_edgeList;
 	void addNode(const node& node)
 	{
 		m_nodeList.push_back(node);
+	}
+	void addEdge(int edgeLength, const node& startPoint, const node& endPoint)
+	{
+		m_edgeList.push_back(edge(edgeLength, startPoint, endPoint));
 	}
 
 };
