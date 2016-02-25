@@ -83,6 +83,24 @@ struct graph
 
 int main()
 {
+	int numberOfTests;
+	std::cin >> numberOfTests;
+
+	//main loop
+	do
+	{
+	//user input for the test
+		//number of nodes
+		//number of edges
+
+	//populate graph with number of nodes
+		//loop through number of edges
+		//get start,end, and length from user and add to graph
+
+	//run Dijkstras shortest path algorithm for edge from user input
+
+	//print shortest path from edge to all other edges
+	} while (true);
 
 	return 0;
 }
