@@ -34,73 +34,96 @@ The last line has an integer SS, denoting the starting position.
 #include <algorithm>
 
 
-struct node;
+struct Node;
 
 //an edge contains its length, startpoint, and endpoint.
 //edges are directional
-struct edge
+struct Edge
 {
 	int m_edgeLength;
-	std::shared_ptr<node> m_startPoint;
-	std::shared_ptr<node> m_endPoint;
+	std::shared_ptr<Node> m_startPoint;
+	std::shared_ptr<Node> m_endPoint;
 
-	edge(int edgeLength,const node& startPoint, const node& endPoint)
+	Edge(int edgeLength,const Node& startPoint, const Node& endPoint)
 	{
 		m_edgeLength = edgeLength;
-		m_endPoint = std::make_shared<node>(endPoint);
-		m_startPoint = std::make_shared<node>(startPoint);
+		m_endPoint = std::make_shared<Node>(endPoint);
+		m_startPoint = std::make_shared<Node>(startPoint);
 	};
 
 };
 
 //A node is a point on the graph
-struct node
+struct Node
 {
-	std::string m_name;
-
-	node(std::string name)
+	int m_name;
+	Node(int name)
 	{
 		m_name = name;
 	}
 };
 
 //the graph is a collection of nodes. The nodes themselves contain the edges.
-struct graph
+struct Graph
 {
-	std::vector<node> m_nodeList;
-	std::vector<edge> m_edgeList;
-	void addNode(const node& node)
-	{
-		m_nodeList.push_back(node);
+	std::vector<Node> m_nodeList;
+	std::vector<Edge> m_edgeList;
+	void addNode(int name)
+	{		
+		m_nodeList.push_back(Node(name));
 	}
-	void addEdge(int edgeLength, const node& startPoint, const node& endPoint)
+	void addEdge(int edgeLength, const Node& startPoint, const Node& endPoint)
 	{
-		m_edgeList.push_back(edge(edgeLength, startPoint, endPoint));
+		m_edgeList.push_back(Edge(edgeLength, startPoint, endPoint));
 	}
-
 };
 
+void dijkstra(const Graph& graph, int node)
+{
+	//TODO
+}
 
 int main()
 {
+	//take in number of tests
 	int numberOfTests;
 	std::cin >> numberOfTests;
+
+	int numberOfNodes;
+	int numberOfEdges;
+
+	Graph graph;
 
 	//main loop
 	do
 	{
 	//user input for the test
 		//number of nodes
+		std::cin >> numberOfNodes;
+		
 		//number of edges
+		std::cin >> numberOfEdges;
 
-	//populate graph with number of nodes
+		//populate graph with number of nodes
+		for (int i = 0;i < numberOfNodes; ++i)
+		{
+			graph.addNode(i);
+		}
 		//loop through number of edges
-		//get start,end, and length from user and add to graph
+		for (int i = 0;i < numberOfEdges; ++i)
+		{
+			//get start,end, and length from user and add to graph
+			int start, end, length;
+			std::cin >> start >> end >> length;
+			graph.addEdge(length,start,end);
+		}
+		
 
 	//run Dijkstras shortest path algorithm for edge from user input
 
 	//print shortest path from edge to all other edges
-	} while (true);
+
+	} while (--numberOfTests);
 
 	return 0;
 }
