@@ -120,7 +120,9 @@ int main()
 		
 
 	//run Dijkstras shortest path algorithm for edge from user input
-
+		int node;
+		std::cin >> node;
+		dijkstra(graph, node);
 	//print shortest path from edge to all other edges
 
 	} while (--numberOfTests);
