@@ -13,6 +13,10 @@
 *.mode1v3
 *.dll
 
+
+*.suo
+*.sdf
+
 Debug/
 Release/
 Public/
